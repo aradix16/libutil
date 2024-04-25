@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_calloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2024/04/18 21:03:04 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/18 21:12:28 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "memory/memory.h"
+#include <stdint.h>
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
+void	*u_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
 
-#endif
+	ptr = NULL;
+	if ((nmemb > 0) && ((SIZE_MAX / nmemb) < size))
+		return (NULL);
+	ptr = (void *)malloc(size * nmemb);
+	if (!ptr)
+		return (NULL);
+	if (nmemb == 0 || size == 0)
+		return (ptr);
+	u_memset(ptr, 0, nmemb * size);
+	return (ptr);
+}

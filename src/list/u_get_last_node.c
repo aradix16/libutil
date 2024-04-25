@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_get_last_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2024/04/25 19:17:15 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/25 21:04:33 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "list/list.h"
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
-
-#endif
+t_list	*u_get_last_node(t_list *lst)
+{
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}

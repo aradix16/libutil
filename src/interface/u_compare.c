@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_compare.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2024/04/25 00:30:24 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/25 22:13:47 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "interface/interface.h"
+#include "string/string.h"
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
+bool	u_int_compare(const void *a, const void *b)
+{
+	int	arg1;
+	int	arg2;
 
-#endif
+	arg1 = *(const int *)a;
+	arg2 = *(const int *)b;
+	return (arg1 > arg2) - (arg1 < arg2);
+}
+
+bool	u_string_compare(const void *a, const void *b)
+{
+	return (u_strcmp(a, b) == 0);
+}

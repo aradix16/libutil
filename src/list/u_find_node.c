@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_find_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2024/04/24 21:13:55 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/26 00:56:18 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "list/list.h"
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
-
-#endif
+t_list	*u_find_node(t_list *lst, void *key, compare_func cmp)
+{
+	while (lst)
+	{
+		if (cmp(lst->key, key))
+			return (lst);
+		lst = lst->next;
+	}
+	return (0);
+}

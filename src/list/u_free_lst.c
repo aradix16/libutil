@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_free_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2024/04/26 00:58:58 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/26 01:39:18 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "list/list.h"
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
 
-#endif
+void    u_free(t_list **lst)
+{
+        t_list  *tmp1;
+        t_list  *tmp2;
+
+        tmp1 = *lst;
+        while (tmp1)
+        {
+                tmp2 = tmp1->next;
+                ft_lstdelone(tmp1, del);
+                tmp1 = tmp2;
+        }
+        *lst = NULL;
+}
+

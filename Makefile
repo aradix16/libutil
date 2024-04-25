@@ -1,16 +1,37 @@
-CC				:=	cc
-CFLAGS			:=	-Wall -Wextra -Werror -Iinclude
+CC					:=	cc
+CFLAGS				:=	-Wall -Wextra -Werror -Iinclude
 
-STRING_SRC_DIR  :=	src/string
-STRING_SOURCES  :=	$(STRING_SRC_DIR)/u_strlen.c
+STRING_SRC_DIR  	:=	src/string
+STRING_SOURCES  	:=	$(STRING_SRC_DIR)/u_strlen.c	\
+						$(STRING_SRC_DIR)/u_strcmp.c
 
-SOURCES			:=	$(STRING_SOURCES)
+MEMORY_SRC_DIR  	:=	src/memory
+MEMORY_SOURCES		:=	$(MEMORY_SRC_DIR)/u_map.c		\
+						$(MEMORY_SRC_DIR)/u_calloc.c	\
+						$(MEMORY_SRC_DIR)/u_memset.c
 
-OBJECT_DIR		:=	obj
-OBJECTS			:=	$(SOURCES:%.c=$(OBJECT_DIR)/%.o)
+LIST_SRC_DIR		:=	src/list
+LIST_SOURCES		:=	$(LIST_SRC_DIR)/u_find_node.c		\
+						$(LIST_SRC_DIR)/u_add_node_back.c	\
+						$(LIST_SRC_DIR)/u_get_last_node.c
 
-BIN_DIR			:=	bin
-LIBRARY			:=	libutil.a
+INTERFACE_SRC_DIR	:=	src/interface
+INTERFACE_SOURCES	:=	$(INTERFACE_SRC_DIR)/u_compare.c
+
+NUMERIC_SRC_DIR		:=	src/numeric
+NUMERIC_SOURCES		:=	$(NUMERIC_SRC_DIR)/u_hash.c
+
+SOURCES				:=	$(STRING_SOURCES)		\
+						$(MEMORY_SOURCES)		\
+						$(LIST_SOURCES)			\
+						$(INTERFACE_SOURCES)	\
+						$(NUMERIC_SOURCES)
+
+OBJECT_DIR			:=	obj
+OBJECTS				:=	$(SOURCES:%.c=$(OBJECT_DIR)/%.o)
+
+BIN_DIR				:=	bin
+LIBRARY				:=	libutil.a
 
 all: $(BIN_DIR)/$(LIBRARY)
 

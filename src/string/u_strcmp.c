@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libutil.h                                          :+:      :+:    :+:   */
+/*   u_strcmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aradix <aradix@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 19:50:40 by aradix            #+#    #+#             */
-/*   Updated: 2024/04/25 17:29:48 by aradix           ###   ########.fr       */
+/*   Created: 2023/11/09 16:53:55 by aradix            #+#    #+#             */
+/*   Updated: 2024/04/25 22:17:29 by aradix           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUTIL_H
-# define LIBUTIL_H
+#include "string/string.h"
 
-# include "string/string.h"
-# include "memory/memory.h"
-# include "list/list.h"
-# include "interface/interface.h"
-# include "numeric/numeric.h"
-
-#endif
+int	u_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			break ;
+		++s1;
+		++s2;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
